@@ -8,8 +8,8 @@ let Security = require('./security');
  * @author Hemant Mann <hemant.mann@vnative.com>
  */
 class Db {
-	constructor() {
-		this.conn = null;
+	constructor(conn) {
+		this.conn = conn || null;
 		// Each DB object will be long lived so we are generating a new cache object each
 		// time with a random prefix to reduce the work of the User
 		this.cache = new Cache({prefix: Security.id()});

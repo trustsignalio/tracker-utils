@@ -1,7 +1,4 @@
-let mongoose = require('mongoose');
 let Cache = require('./cache');
-
-let Utils = require('./utils');
 let Security = require('./security');
 
 /**

@@ -76,6 +76,38 @@ class Redis {
   }
 
   /**
+   * @since 1.0.4
+   * @param {...String} args String array
+   */
+  async PFADD(...args) {
+    this.client.pfadd(...args)
+  }
+
+  /**
+   * Increment a hash map field in redis and dont wait for server reply
+   * @param {String} key   Key name in redis
+   * @param {String} field Hash map field in redis
+   * @param {Number} value Value to be incremented by
+   *
+   * @since 1.0.4
+   */
+  async HINCRBY(key, field, value) {
+    this.client.hincrby(key, field, value);
+  }
+
+  /**
+   * Increment a hash map floating point field in redis and dont wait for server reply
+   * @param {String} key   Key name in redis
+   * @param {String} field Hash map field in redis
+   * @param {Number} value Value to be incremented by
+   *
+   * @since 1.0.4
+   */
+  async HINCRBYFLOAT(key, field, value) {
+    this.client.hincrbyfloat(key, field, value);
+  }
+
+  /**
    * All the public function call this function to execute the redis commands
    * @param  {...String} args List of arguments to the function
    * @return {Promise}         Client should await the result of promise and use try catch for error handling

@@ -128,7 +128,7 @@ class TrafficDistribution {
 				if (shouldResetCounter) {
 					operations.push(['hmset', redisKey, redisField, 0]);
 				}
-				return;   // empty return sort of like break in callback foreach
+				return;   // empty return sort of like continue in callback foreach
 			}
 
 			if (shouldResetCounter) {

@@ -13,6 +13,26 @@ class Db {
 		// Each DB object will be long lived so we are generating a new cache object each
 		// time with a random prefix to reduce the work of the User
 		this.cache = new Cache({prefix: Security.id()});
+		this.models = {};
+	}
+
+	/**
+	 * Registers a model on the connection if not already registered
+	 * @param {String}			name Name of the model
+	 * @param {Mongoose.Schema} schema Model Schema
+	 */
+	setModel(name, schema) {
+		if (typeof this.models[name] === "undefined") {
+			this.models[name] = this.conn.model(name, schema);
+		}
+	}
+
+	/**
+	 * Get the model from the model MAP
+	 * @param {String} name Name of the model
+	 */
+	getModel(name) {
+		return this.models[name];
 	}
 
 	/**

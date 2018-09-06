@@ -108,6 +108,24 @@ class Redis {
   }
 
   /**
+   * Set Expiration time on a key
+   * @param {String} key Name of the key
+   * @param {Number} t   Time in seconds
+   */
+  async EXPIRE(key, t) {
+    this.client.expire(key, t)
+  }
+
+  /**
+   * Get the TTL of a key
+   * @param  {String} key Name of the key
+   * @return {Number}
+   */
+  async ttl(key) {
+    return this._execute('ttl', key);
+  }
+
+  /**
    * All the public function call this function to execute the redis commands
    * @param  {...String} args List of arguments to the function
    * @return {Promise}         Client should await the result of promise and use try catch for error handling

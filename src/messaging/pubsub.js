@@ -10,9 +10,9 @@ class PubSub {
 	}
 
 	async send(message) {
-		const dataBuffer = Buffer.from(data);
+		const dataBuffer = Buffer.from(message);
 		// TODO: retry if failed?
-		let messageId = await this._client.topic(this.topic).publisher().publish(dataBuffer)
+		let messageId = await this._client.topic(this.topic).publisher().publish(dataBuffer);
 		return messageId;
 	}
 }

@@ -1,4 +1,5 @@
 const PubsubClient = require('@google-cloud/pubsub');
+let Promise = require('bluebird');
 
 class PubSub {
 	constructor(config) {
@@ -9,11 +10,36 @@ class PubSub {
 		})
 	}
 
+	/**
+	 * Call this function to sleep for a given milliseconds
+	 * @param  {Number} ms time in milliseconds
+	 * @return {Promise}
+	 */
+	async sleep(ms) {
+		return new Promise(resolve => {
+			setTimeout(() => resolve(true), ms);
+		})
+	}
+
+	/**
+	 * Send message to the pub sub channel
+	 * @param  {String} message The string message to be transferred over the channel
+	 * @return {String}         Message ID on success
+	 * @throws {Error} If failed to send message to pub sub
+	 */
 	async send(message) {
 		const dataBuffer = Buffer.from(message);
-		// TODO: retry if failed?
-		let messageId = await this._client.topic(this.topic).publisher().publish(dataBuffer);
-		return messageId;
+		for (let i = 1; i <= 5; i++) {
+			try {
+				let messageId = await this._client.topic(this.topic).publisher().publish(dataBuffer);
+				return messageId;
+			} catch (e) {	// retry once again with exponential fallback
+				await this.sleep(i * 100);
+			}
+		}
+		let sendError = new Error('Failed to send message to pub/sub');
+		sendError.data = message;
+		throw sendError;
 	}
 }
 

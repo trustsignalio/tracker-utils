@@ -34,6 +34,12 @@ class Redis {
   async zrangebyscore(...args) {
     return this._execute('zrangebyscore', ...args);
   }
+  /**
+   * Execute Raw Command 
+   */
+  async executeCommand(commandName , ...args) {
+    return this._execute(commandName, ...args)
+  }
 
   async hgetall(key) {
     return this._execute('hgetall', key);

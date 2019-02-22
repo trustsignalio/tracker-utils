@@ -106,8 +106,15 @@ class Db {
 	 * @param  {String} fields     Fields string separated by " "
 	 * @return {Array}       Result returned by the driver
 	 */
-	async findAll(m, q, fields) {
-		return this.conn.model(m).find(q, fields).lean().exec();
+	async findAll(m, q, fields, opts) {
+		if (! opts) {
+			opts = {}
+		}
+		let query = this.conn.model(m).find(q, fields);
+		if (opts.maxTimeMS) {
+			query.maxTimeMS(opts.maxTimeMS)
+		}
+		return query.lean().exec();
 	}
 
 	/**

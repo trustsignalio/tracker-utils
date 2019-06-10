@@ -114,6 +114,16 @@ class Redis {
   }
 
   /**
+   * ZADD method will add the member with the given score to the sorted set
+   * @param {String} key    Sorted set key name
+   * @param {Number} score  Score for the member
+   * @param {String} member Member ID
+   */
+  async ZADD(key, score, member) {
+    this.client.zadd(key, score, member);
+  }
+
+  /**
    * Set Expiration time on a key
    * @param {String} key Name of the key
    * @param {Number} t   Time in seconds

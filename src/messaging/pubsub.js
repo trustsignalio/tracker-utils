@@ -1,4 +1,4 @@
-const PubsubClient = require('@google-cloud/pubsub');
+const {PubsubClient} = require('@google-cloud/pubsub');
 let Promise = require('bluebird');
 
 class PubSub {

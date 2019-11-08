@@ -35,7 +35,7 @@ class PubSubLib {
 		const dataBuffer = Buffer.from(message);
 		for (let i = 1; i <= 5; i++) {
 			try {
-				let messageId = await this._client.topic(this.topic).publisher().publish(dataBuffer);
+				let messageId = await this._client.topic(this.topic).publish(dataBuffer);
 				return messageId;
 			} catch (e) {	// retry once again with exponential fallback
 				await this.sleep(i * 100);

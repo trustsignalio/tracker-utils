@@ -1,7 +1,7 @@
 const {PubSub} = require('@google-cloud/pubsub');
 let Promise = require('bluebird');
 
-class PubSub {
+class PubSubLib {
 	constructor(config) {
 		this.project = config.project;
 		this.topic = config.topic;
@@ -68,4 +68,4 @@ class PubSub {
 	}
 }
 
-module.exports = PubSub;
+module.exports = PubSubLib;

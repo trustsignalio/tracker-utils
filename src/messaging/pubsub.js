@@ -1,11 +1,11 @@
-const {PubsubClient} = require('@google-cloud/pubsub');
+const {PubSub} = require('@google-cloud/pubsub');
 let Promise = require('bluebird');
 
 class PubSub {
 	constructor(config) {
 		this.project = config.project;
 		this.topic = config.topic;
-		this._client = new PubsubClient({
+		this._client = new PubSub({
 			projectId: this.project
 		})
 		if (config.subscription) {

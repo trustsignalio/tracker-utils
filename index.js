@@ -1,5 +1,6 @@
 let Cache = require('./src/cache');
 let Db = require('./src/db'),
+	DbUtil = require('./src/dbUtil'),
 	Messaging = require('./src/messaging'),
 	Redis = require('./src/redis'),
 	Registry = require('./src/registry'),
@@ -9,6 +10,7 @@ let Db = require('./src/db'),
 module.exports = {
 	Cache: Cache,
 	Db: Db,
+	DbUtil: DbUtil,
 	Messaging: Messaging,
 	Redis: Redis,
 	Registry: Registry,

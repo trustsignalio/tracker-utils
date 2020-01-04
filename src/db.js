@@ -1,3 +1,4 @@
+let _ = require('lodash');
 let Cache = require('./cache');
 let Security = require('./security');
 
@@ -52,7 +53,15 @@ class Db {
 	 * @return {String}        Unique Cache Key
 	 */
 	getCacheKey(model, query, fields) {
-		let qstr = JSON.stringify(query);	// IT Does NOT ENCODE REGEX
+		let dupQuery = {};
+		_.each(query, (v, k) => {
+			if (typeof v == "object" && v instanceof RegExp) {
+				dupQuery[k] = v.toString();
+			} else {
+				dupQuery[k] = v;
+			}
+		})
+		let qstr = JSON.stringify(dupQuery);
 		let key = `${model}:${qstr}`;
 		if (fields) {
 			key += ":" + fields;

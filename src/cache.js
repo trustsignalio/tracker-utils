@@ -81,6 +81,18 @@ class Cache {
       })
     })
   }
+
+  async delete(name) {
+    let self = this;
+    return new Promise(resolve => {
+      self._memcached.del(self.getKey(name), function (err) {
+        if (err) {
+          return reject(err);
+        }
+        resolve(true);
+      })
+    })
+  }
 }
 
 module.exports = Cache;

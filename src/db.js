@@ -44,6 +44,10 @@ class Db {
 		this.conn = obj
 	}
 
+	async removeCache(key) {
+		await this.cache.delete(key);
+	}
+
 	/**
 	 * Get the Cache Key for based on the model, query and fields supplied to the
 	 * function by generating a signature with combination of all three

@@ -66,8 +66,16 @@ class Db {
 	 * @param  {Object} query Query obj
 	 * @return {Object|null}       Result returned by the driver
 	 */
-	async first(m, query) {
-		return this.conn.model(m).findOne(query).lean().exec();
+	async first(m, q, opts) {
+		let query = this.conn.model(m).findOne(q);
+		if (opts && opts.maxTimeMS) {
+			query.maxTimeMS(opts.maxTimeMS);
+		}
+		if (opts && opts.lean == false) {
+			return query.exec();
+		}
+
+		return query.lean().exec();
 	}
 
 	/**
@@ -75,12 +83,12 @@ class Db {
 	 * Query the database model with the provided query and also set the obj in cache
 	 * @param  {Number} t     Time in seconds for the which the object is to be cached if found
 	 */
-	async _cacheFirst(m, q, t) {
+	async _cacheFirst(m, q, opts) {
 		let cacheKey = this.getCacheKey(m, q);
 		let cacheObj = await this.cache.get(cacheKey);
 		if (cacheObj === undefined) {
-			cacheObj = await this.first(m, q);
-			await this.cache.set(cacheKey, cacheObj, t)
+			cacheObj = await this.first(m, q, opts);
+			await this.cache.set(cacheKey, cacheObj, opts && opts.timeout ? opts.timeout : 0)
 		}
 		return cacheObj;
 	}
@@ -88,8 +96,8 @@ class Db {
 	/**
 	 * Public wrapper for the private method
 	 */
-	async cacheFirst(model, query) {
-		return this._cacheFirst(model, query);
+	async cacheFirst(model, query, opts) {
+		return this._cacheFirst(model, query, opts);
 	}
 
 	/**
@@ -98,7 +106,7 @@ class Db {
 	 * and set the obj in cache for specified "timeout" seconds
 	 */
 	async cacheFirstWithTime(model, query, timeout) {
-		return this._cacheFirst(model, query, timeout);
+		return this._cacheFirst(model, query, {timeout: timeout});
 	}
 
 	/**

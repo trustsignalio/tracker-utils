@@ -80,12 +80,9 @@ class Db {
 	 * @return {Object|null}       Result returned by the driver
 	 */
 	async first(m, q, opts) {
-		let query = this.conn.model(m).findOne(q);
+		let query = this.getModel(m).findOne(q);
 		if (opts && opts.maxTimeMS) {
 			query.maxTimeMS(opts.maxTimeMS);
-		}
-		if (opts && opts.lean == false) {
-			return query.exec();
 		}
 
 		return query.lean().exec();
@@ -102,6 +99,10 @@ class Db {
 		if (cacheObj === undefined) {
 			cacheObj = await this.first(m, q, opts);
 			await this.cache.set(cacheKey, cacheObj, opts && opts.timeout ? opts.timeout : 0)
+		}
+		if (opts && opts.lean == false) {
+			let model = this.getModel(m);
+			cacheObj = new model(cacheObj);
 		}
 		return cacheObj;
 	}

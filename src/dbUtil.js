@@ -19,6 +19,10 @@ class DbUtil {
 		let str = this.connectionStr(config);
 		return mongoose.createConnection(str, { useNewUrlParser: true });
 	}
+
+	generateMongoId() {
+		return mongoose.Types.ObjectId();
+	}
 }
 
 module.exports = new DbUtil;

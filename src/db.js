@@ -80,7 +80,7 @@ class Db {
 	 * @return {Object|null}       Result returned by the driver
 	 */
 	async first(m, q, opts) {
-		let query = this.getModel(m).findOne(q);
+		let query = this.conn.model(m).findOne(q);
 		if (opts && opts.maxTimeMS) {
 			query.maxTimeMS(opts.maxTimeMS);
 		}

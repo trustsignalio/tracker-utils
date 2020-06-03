@@ -8,10 +8,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/cloudstuffinc/tracker-utils.git"
+    "url": "git+ssh://git@github.com/CloudStuffTech/tracker-utils.git"
   },
   "author": "Hemant Mann <hemant.mann@vnative.com>",
-  "homepage": "https://bitbucket.org/cloudstuffinc/tracker-utils#readme",
+  "homepage": "https://github.com/CloudStuffTech/tracker-utils#readme",
   "dependencies": {
     "@google-cloud/pubsub": "^1.1.3",
     "bluebird": "^3.5.0",

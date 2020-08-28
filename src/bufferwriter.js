@@ -16,6 +16,7 @@ class BufferWriter {
 		this._model = model;
 		this._docs = [];
 		this.maxDocs = opts.maxDocs || 500;
+		this._timer = null;
 
 		this.addTimer(opts.timer || 4);
 		this.shutdownHook();
@@ -45,7 +46,7 @@ class BufferWriter {
 	 */
 	addTimer(secs) {
 		let buffer = this;
-		setTimeout(() => buffer.flush(true), secs * 1000);
+		this._timer = setTimeout(() => buffer.flush(true), secs * 1000);
 	}
 
 	/**

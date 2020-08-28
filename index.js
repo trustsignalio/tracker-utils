@@ -1,3 +1,4 @@
+let BufferWriter = require('./src/bufferwriter');
 let Cache = require('./src/cache');
 let Db = require('./src/db'),
 	DbUtil = require('./src/dbUtil'),
@@ -8,6 +9,7 @@ let Db = require('./src/db'),
 	TrafficDistribution = require('./src/trafficdistribution');
 
 module.exports = {
+	BufferWriter: BufferWriter,
 	Cache: Cache,
 	Db: Db,
 	DbUtil: DbUtil,

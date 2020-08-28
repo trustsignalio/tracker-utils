@@ -19,7 +19,6 @@ class BufferWriter {
 		this._timer = null;
 
 		this.addTimer(opts.timer || 4);
-		this.shutdownHook();
 	}
 
 	insert(doc) {
@@ -47,21 +46,6 @@ class BufferWriter {
 	addTimer(secs) {
 		let buffer = this;
 		this._timer = setTimeout(() => buffer.flush(true), secs * 1000);
-	}
-
-	/**
-	 * Shutdown hook will add event handler on the node process to flush the in-memory buffer
-	 * in case the application quits and there is some data in memory
-	 */
-	shutdownHook() {
-		let buffer = this;
-		process.on('SIGINT', function () {
-			buffer.flush(true);
-		})
-
-		process.on('exit', function () {
-			buffer.flush(true);
-		})
 	}
 }
 

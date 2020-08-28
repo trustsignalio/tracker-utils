@@ -32,7 +32,9 @@ class BufferWriter {
 	 */
 	flush(override) {
 		if (override || this._docs.length >= this.maxDocs) {
-			this._model.insertMany(this._docs, {ordered: false}).then(d => true).catch(e => true)
+			if (this._docs.length > 0) {
+				this._model.insertMany(this._docs, {ordered: false}).then(d => true).catch(e => true);
+			}
 			this._docs = [];
 		}
 	}

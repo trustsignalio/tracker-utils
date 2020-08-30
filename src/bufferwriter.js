@@ -45,7 +45,7 @@ class BufferWriter {
 	 */
 	addTimer(secs) {
 		let buffer = this;
-		this._timer = setTimeout(() => buffer.flush(true), secs * 1000);
+		setInterval(() => buffer.flush(true), secs * 1000);
 	}
 }
 

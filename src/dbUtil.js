@@ -23,6 +23,10 @@ class DbUtil {
 	generateMongoId() {
 		return mongoose.Types.ObjectId();
 	}
+
+	convertToMongoId(id) {
+		return new mongoose.Types.ObjectId(id);
+	}
 }
 
 module.exports = new DbUtil;

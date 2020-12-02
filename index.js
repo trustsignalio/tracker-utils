@@ -6,7 +6,9 @@ let Db = require('./src/db'),
 	Redis = require('./src/redis'),
 	Registry = require('./src/registry'),
 	Security = require('./src/security'),
-	TrafficDistribution = require('./src/trafficdistribution');
+	TrafficDistribution = require('./src/trafficdistribution'),
+	ArrayMethods = require('./src/arraymethods'),
+	StringMethods = require('./src/stringmethods');
 
 module.exports = {
 	BufferWriter: BufferWriter,
@@ -17,5 +19,7 @@ module.exports = {
 	Redis: Redis,
 	Registry: Registry,
 	Security: Security,
-	TrafficDistribution: TrafficDistribution
+	TrafficDistribution: TrafficDistribution,
+	ArrayMethods: ArrayMethods,
+	StringMethods: StringMethods
 }

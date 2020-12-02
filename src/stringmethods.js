@@ -4,7 +4,7 @@ class StringMethods {
 	constructor() {}
 
 	static makePrimaryKey(obj, groupBy = []) {
-		pieces = [];
+		let pieces = [];
 		_.each(groupBy, (g) => {
 			var v = '';
 			if (obj[g] && _.isString(obj[g]) && _.size(obj[g]) == 0) {

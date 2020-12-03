@@ -6,13 +6,7 @@ class StringMethods {
 	static makePrimaryKey(obj, groupBy = []) {
 		let pieces = [];
 		_.each(groupBy, (g) => {
-			var v = '';
-			if (obj[g] && _.isString(obj[g]) && _.size(obj[g]) == 0) {
-				v = ' ';
-			} else {
-				v = obj[g] || ' ';
-			}
-			pieces.push(v);
+			pieces.push(obj[g] || ' ');
 		});
 		return _.join(pieces, "_XX_");
 	}

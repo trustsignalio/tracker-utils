@@ -1,6 +1,6 @@
 {
   "name": "tracker-utils",
-  "version": "1.4.15",
+  "version": "1.4.16",
   "description": "Tracker Utils",
   "main": "index.js",
   "scripts": {

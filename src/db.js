@@ -37,6 +37,19 @@ class Db {
 	}
 
 	/**
+	 * This method will return the columns for a given schema
+	 * @param  {String} name Name of the model
+	 * @return {Array}      []string
+	 */
+	getModelCols(name) {
+		let m = this.models[name];
+		if (!m) {
+			return [];
+		}
+		return _.keys(m.schema.paths);
+	}
+
+	/**
 	 * Store the connection object which will be used to make query to the database
 	 * @param {Mongoose.Connection} obj
 	 */

@@ -23,7 +23,7 @@ class Redis {
     }
 
     this.client.on('error', (err) => {
-      console.log('Error: Redis.CLIENT - ' + err);
+      console.log('Error: Redis.CLIENT - ' + err, conf.host);
     })
   }
 

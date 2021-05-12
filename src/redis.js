@@ -16,11 +16,11 @@ class Redis {
    */
   constructor(conf) {
     let db = conf.db || 0;
-    if (conf.user && conf.password) {
-      this.client = redis.createClient({ url: `redis://${conf.user}:${conf.password}@${conf.host}:${conf.port}/${db}` });
-    } else {
-      this.client = redis.createClient({ url: `redis://${conf.host}:${conf.port}/${db}` });
+    let clientOpts = { host: conf.host, no_ready_check: true, db: db };
+    if (conf.password) {
+      clientOpts.auth_pass = conf.password;
     }
+    this.client = redis.createClient(clientOpts);
 
     this.client.on('error', (err) => {
       console.log('Error: Redis.CLIENT - ' + err, conf.host);

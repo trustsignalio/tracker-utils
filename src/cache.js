@@ -87,7 +87,7 @@ class Cache {
     return new Promise(resolve => {
       self._memcached.del(self.getKey(name), function (err) {
         if (err) {
-          return reject(err);
+          return resolve(false);
         }
         resolve(true);
       })

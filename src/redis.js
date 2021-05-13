@@ -45,6 +45,18 @@ class Redis {
     return this._execute('hgetall', key);
   }
 
+  async get(key) {
+    return this._execute('get', key);
+  }
+
+  async set(key, value) {
+    return this._execute('set', key, value);
+  }
+
+  async del(key) {
+    return this._execute('del', key);
+  }
+
   async pfadd(...args) {
     return this._execute('pfadd', ...args);
   }

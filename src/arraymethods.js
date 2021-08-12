@@ -21,9 +21,9 @@ class ArrayMethods {
 		return to;
 	}
 	
-	static remove(keys, arr) {
-		_.each(keys, (key) => {
-			let index = arr.indexOf(key);
+	static removeVals(vals, arr) {
+		_.each(vals, (v) => {
+			let index = arr.indexOf(v);
 			if (index > -1) {
 				arr.splice(index, 1);
 			}

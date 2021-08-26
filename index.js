@@ -1,6 +1,6 @@
-let BufferWriter = require('./src/bufferwriter');
-let Cache = require('./src/cache');
-let Db = require('./src/db'),
+let BufferWriter = require('./src/bufferwriter'),
+	Cache = require('./src/cache'),
+	Db = require('./src/db'),
 	DbUtil = require('./src/dbUtil'),
 	Messaging = require('./src/messaging'),
 	Redis = require('./src/redis'),
@@ -8,7 +8,8 @@ let Db = require('./src/db'),
 	Security = require('./src/security'),
 	TrafficDistribution = require('./src/trafficdistribution'),
 	ArrayMethods = require('./src/arraymethods'),
-	StringMethods = require('./src/stringmethods');
+	StringMethods = require('./src/stringmethods'),
+	Mailer = require("./src/mailer");
 
 module.exports = {
 	BufferWriter: BufferWriter,
@@ -21,5 +22,6 @@ module.exports = {
 	Security: Security,
 	TrafficDistribution: TrafficDistribution,
 	ArrayMethods: ArrayMethods,
-	StringMethods: StringMethods
-}
+	StringMethods: StringMethods,
+	Mailer: Mailer
+};

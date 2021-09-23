@@ -15,7 +15,7 @@ class DbUtil {
 		return util.format('mongodb://%s:%s@%s/%s?%s', config.user, config.password, config.host, config.database, config.options);
 	}
 
-	createConnection(connectionStr, certFileBuf) {
+	createConnection(connectionStr, certFileBuf, config) {
 		return mongoose.createConnection(connectionStr, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, poolSize: config.poolSize || 5, replset: { sslCA: certFileBuf } });
 	}
 

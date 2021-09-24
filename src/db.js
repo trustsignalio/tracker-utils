@@ -22,9 +22,9 @@ class Db {
 	 * @param {String}			name Name of the model
 	 * @param {Mongoose.Schema} schema Model Schema
 	 */
-	setModel(name, schema) {
+	setModel(name, schema, collectionname) {
 		if (typeof this.models[name] === "undefined") {
-			this.models[name] = this.conn.model(name, schema);
+			this.models[name] = this.conn.model( collectionname || name, schema);
 		}
 	}
 

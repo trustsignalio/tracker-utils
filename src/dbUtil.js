@@ -16,7 +16,7 @@ class DbUtil {
 	}
 
 	createConnection(connectionStr, certFileBuf, config) {
-		return mongoose.createConnection(connectionStr, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, poolSize: config.poolSize || 5, replset: { sslCA: certFileBuf } });
+		return mongoose.createConnection(connectionStr, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, poolSize: config.poolSize || 5, sslCA: certFileBuf  });
 	}
 
 	generateMongoId() {

@@ -77,6 +77,20 @@ class Redis {
 		return this._execute('hset', key, field, value)
 	}
 
+	async hmset(key, value) {
+		let pipeline = this.client.batch()
+		value.forEach(v => {
+			pipeline.hset(key, v.field, v.value);
+		});
+		pipeline.exec((err, results) => {
+			if (err) {
+				console.error(err);
+			} else {
+				console.log(results);
+			}
+		});
+	}
+
 	async multiExecute(operations) {
 		let multi = this.getMulti();
 		_.each(operations, (args) => {
